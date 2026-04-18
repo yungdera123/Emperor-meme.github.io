@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Emperors Lounge | Premium Laptops</title>
+</head>
+<body>
+    <header>
+    <a href="index.html" id="logo-text">E. LOUNGE</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="payment.html">Payment</a>
+        <span id="display-email" style="color: #00bcd4; font-size: 0.8rem; margin-left: 10px;"></span>
+        <button onclick="logoutUser()" style="background: transparent; border: 1px solid #ff4d4d; color: #ff4d4d; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-left: 10px;">Logout</button>
+    </nav>
+</header>
+    <script>
+    // 1. Check if user is logged in on page load
+    window.onload = function() {
+        if(localStorage.getItem('isLoggedIn') === 'true') {
+            document.getElementById('auth-modal').style.display = 'none';
+        }
+    };
+
+    function validateAccess() {
+    const email = document.getElementById('email').value;
+    const pass = document.getElementById('password').value;
+    if (email.includes('@') && email.length > 5 && pass.length >= 6) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', email); // Save the email here
+        document.getElementById('auth-modal').style.display = 'none';
+        location.reload(); // Refresh to show the email immediately
+    } else { alert("Please enter a valid email and a password of at least 6 characters."); }
+}
+</script>
+<div id="auth-modal">
+    <div class="auth-box">
+        <h2 id="auth-title">Emperors Lounge</h2>
+        <input type="text" id="email" placeholder="Email Address">
+        <input type="password" id="password" placeholder="Password (min 6 chars)">
+        
+        <button class="auth-btn" onclick="validateAccess()">Sign In / Create Account</button>
+        
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #888;">
+            Access is restricted to authorized users.
+        </p>
+    </div>
+</div>
+
+    <div class="container">
+        <section class="hero-section">
+            <div class="hero-bg-image" style="background-image: url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1200');"></div>
+            
+            <div class="hero-text-overlay">
+                <h1>Unlock the Power of Computing</h1>
+                <p>Welcome to <strong>Emperors Lounge</strong>. Technology should empower you. Laptops are your gateway to creativity, business growth, research, and communication.</p>
+                <p>We match you with the right processor, memory, and performance needed for your journey.</p>
+                <a href="https://wa.me/2348136693871" class="btn">Chat on WhatsApp</a>
+            </div>
+        </section>
+
+        <section class="interactive-cards">
+            <div class="card">
+                <h3>Processors (CPU)</h3>
+                <p>The "brain" of your laptop. Faster processors like Intel Core i7 or Ryzen 7 can handle video editing and gaming effortlessly. We find the sweet spot for your workload.</p>
+            </div>
+            <div class="card">
+                <h3>Memory (RAM)</h3>
+                <p>The short-term memory that keeps your machine fast when many tabs are open. 8GB is standard, but we recommend 16GB for heavy multitasking.</p>
+            </div>
+            <div class="card">
+                <h3>Storage (SSD)</h3>
+                <p>Where your files live. We only stock laptops with Solid State Drives (SSDs). SSDs are much faster and more durable than old Hard Disk Drives (HDDs).</p>
+            </div>
+        </section>
+
+        <section class="people-section">
+            <div class="people-img">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800" alt="Happy clients with computers" class="img-fluid">
+            </div>
+            <div class="people-text">
+                <h2>Our Client Commitment</h2>
+                <p>Our goal is to see you smile. Whether you are a student preparing for JAMB (good luck with your physics preparation!) or a business professional, having reliable hardware shouldn't be stressful.</p>
+                <p>We provide durable machines that guarantee reliability, speed, and great battery life, allowing you to focus on your success.</p>
+                <p>Reach us anytime via Email: <a href="mailto:yungchidex333@gmail.com" class="contact-link">yungchidex333@gmail.com</a></p>
+            </div>
+        </section>
+
+    </div>
+<script>
+    // Logic to check if user is logged in
+    window.onload = function() { 
+        if(localStorage.getItem('isLoggedIn') === 'true') { 
+            document.getElementById('auth-modal').style.display = 'none';
+            document.getElementById('display-email').innerText = localStorage.getItem('userEmail');
+        } 
+    };
+
+    // Logic to sign in
+    function validateAccess() {
+        const email = document.getElementById('email').value;
+        const pass = document.getElementById('password').value;
+        if(email.includes('@') && email.length > 5 && pass.length >= 6) {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userEmail', email);
+            document.getElementById('auth-modal').style.display = 'none';
+            location.reload();
+        } else { 
+            alert("Please enter a valid email and a password of at least 6 characters."); 
+        }
+    }
+
+    // Logic to logout
+    function logoutUser() {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userEmail');
+        location.reload();
+    }
+</script>
+</body>
+</html>

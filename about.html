@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>About Emperors Lounge</title>
+</head>
+<body>
+<header>
+    <a href="index.html" id="logo-text">E. LOUNGE</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="payment.html">Payment</a>
+        <span id="display-email" style="color: #00bcd4; font-size: 0.8rem; margin-left: 10px;"></span>
+        <button onclick="logoutUser()" style="background: transparent; border: 1px solid #ff4d4d; color: #ff4d4d; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-left: 10px;">Logout</button>
+    </nav>
+</header>
+    <script>
+    // 1. Check if user is logged in on page load
+    window.onload = function() {
+        if(localStorage.getItem('isLoggedIn') === 'true') {
+            document.getElementById('auth-modal').style.display = 'none';
+        }
+    };
+
+    function validateAccess() {
+    const email = document.getElementById('email').value;
+    const pass = document.getElementById('password').value;
+    if (email.includes('@') && email.length > 5 && pass.length >= 6) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', email); // Save the email here
+        document.getElementById('auth-modal').style.display = 'none';
+        location.reload(); // Refresh to show the email immediately
+    } else { alert("Please enter a valid email and a password of at least 6 characters."); }
+}
+</script>
+<div id="auth-modal">
+    <div class="auth-box">
+        <h2 id="auth-title">Emperors Lounge</h2>
+        <input type="text" id="email" placeholder="Email Address">
+        <input type="password" id="password" placeholder="Password (min 6 chars)">
+        
+        <button class="auth-btn" onclick="validateAccess()">Sign In / Create Account</button>
+        
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #888;">
+            Access is restricted to authorized users.
+        </p>
+    </div>
+</div>
+
+    <div class="container">
+        <h1>About Emperors Lounge</h1>
+        <div class="info-grid">
+            <div class="info-item">
+                <h2>Our Philosophy</h2>
+                <p>Founded on principles of integrity and excellence, Emperors Lounge exists to bridge the gap between quality technology and everyday people.</p>
+                <p>We understand that purchasing a laptop is a significant investment. Our philosophy is rooted in ensuring that every customer leaves not just with a product, but with the confidence that they have the best tool available for their needs and budget.</p>
+            </div>
+            <div class="info-item">
+                <h2>Why Choose Us?</h2>
+                <p>We don't just sell; we consult. We analyze your requirements (are you a developer, a content creator, or a casual user?) and provide expert recommendations.</p>
+                <p>Our curated selection ensures only reliable brands and tested hardware make it to our shelves, giving you peace of mind that your machine will last.</p>
+                </div>
+        </div>
+    </div>
+    <script>
+    // Logic to check if user is logged in
+    window.onload = function() { 
+        if(localStorage.getItem('isLoggedIn') === 'true') { 
+            document.getElementById('auth-modal').style.display = 'none';
+            document.getElementById('display-email').innerText = localStorage.getItem('userEmail');
+        } 
+    };
+
+    // Logic to sign in
+    function validateAccess() {
+        const email = document.getElementById('email').value;
+        const pass = document.getElementById('password').value;
+        if(email.includes('@') && email.length > 5 && pass.length >= 6) {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userEmail', email);
+            document.getElementById('auth-modal').style.display = 'none';
+            location.reload();
+        } else { 
+            alert("Please enter a valid email and a password of at least 6 characters."); 
+        }
+    }
+
+    // Logic to logout
+    function logoutUser() {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userEmail');
+        location.reload();
+    }
+</script>
+</body>
+</html>
