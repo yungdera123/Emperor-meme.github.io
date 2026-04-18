@@ -1,4 +1,3 @@
-# Emperor-meme.github.io
 /* Ensure the modal covers everything */
 #auth-modal {
     position: fixed;
